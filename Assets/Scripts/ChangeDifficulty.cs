@@ -17,6 +17,9 @@ public class ChangeDifficulty : MonoBehaviour
     // exp bar
     public ExpBar expBar;
 
+    // hp bar
+    public HpBar hpBar;
+
     // player scale
     private Vector3 scaleChange;
 
@@ -46,6 +49,9 @@ public class ChangeDifficulty : MonoBehaviour
             // set new max exp
             SetNewMaxExp();
 
+            // set new max hp
+            SetNewMaxHp();
+
             // set player scale
             SetPlayerScale();
 
@@ -73,6 +79,15 @@ public class ChangeDifficulty : MonoBehaviour
         expBar.SetExp(playerScript.exp);
         expBar.SetMaxExp(playerScript.maxExp);
         Debug.Log("max exp : " + playerScript.maxExp);
+    }
+
+    void SetNewMaxHp()
+    {
+        playerScript.maxHp += 5;
+        playerScript.hp = playerScript.maxHp;
+        hpBar.SetHp(playerScript.hp);
+        hpBar.SetMaxHp(playerScript.maxHp);
+        Debug.Log("max hp : " + playerScript.maxHp);
     }
 
     void SetPlayerScale()

@@ -43,6 +43,13 @@ public class PlayerController : MonoBehaviour
 
     public ExpBar expBar;
 
+    // player hp
+    public int maxHp = 5;
+
+    public int hp;
+
+    public HpBar hpBar;
+
     //player attack
     private bool isAttacked;
 
@@ -60,7 +67,12 @@ public class PlayerController : MonoBehaviour
         // set start exp
         expBar.SetMaxExp (maxExp);
         exp = 0;
+
         isAttacked = false;
+
+        // set start hp
+        hpBar.SetMaxHp (maxHp);
+        hp = 5;
     }
 
     // Update is called once per frame
@@ -197,6 +209,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("enemy");
                 exp--;
                 expBar.SetExp (exp);
+                hp--;
+                hpBar.SetHp (hp);
                 enemyPrefab = GameObject.FindWithTag("Enemy");
                 Vector3 awayFromEnemy =
                     (transform.position - enemyPrefab.transform.position)
