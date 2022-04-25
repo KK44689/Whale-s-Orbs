@@ -46,7 +46,10 @@ public class PlayerController : MonoBehaviour
     //player attack
     private bool isAttacked;
 
-    private ChangeDifficulty changeDifficultyScript;
+    // player boundary
+    private float boundaryX = 22;
+
+    private float boundaryZ = 12;
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +61,6 @@ public class PlayerController : MonoBehaviour
         expBar.SetMaxExp (maxExp);
         exp = 0;
         isAttacked = false;
-
-        // get ChangeDifficulty script
-        changeDifficultyScript =
-            GameObject.Find("Plane").GetComponent<ChangeDifficulty>();
     }
 
     // Update is called once per frame
@@ -74,6 +73,39 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckExp();
+        PlayerBoundary();
+    }
+
+    void PlayerBoundary()
+    {
+        if (transform.position.x > boundaryX)
+        {
+            transform.position =
+                new Vector3(boundaryX,
+                    transform.position.y,
+                    transform.position.z);
+        }
+        if (transform.position.z > boundaryZ)
+        {
+            transform.position =
+                new Vector3(transform.position.x,
+                    transform.position.y,
+                    boundaryZ);
+        }
+        if (transform.position.x < -boundaryX)
+        {
+            transform.position =
+                new Vector3(-boundaryX,
+                    transform.position.y,
+                    transform.position.z);
+        }
+        if (transform.position.z < -boundaryZ)
+        {
+            transform.position =
+                new Vector3(transform.position.x,
+                    transform.position.y,
+                    -boundaryZ);
+        }
     }
 
     void PlayerMove()
