@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     // gameover
     public bool isGameActive;
 
+    public GameObject GameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +81,9 @@ public class PlayerController : MonoBehaviour
 
         // set gameactive bool
         isGameActive = true;
+
+        // gameover
+        GameOverScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -98,6 +103,10 @@ public class PlayerController : MonoBehaviour
         {
             CheckExp();
             PlayerBoundary();
+        }
+        if (!isGameActive)
+        {
+            GameOverScreen.SetActive(true);
         }
     }
 
