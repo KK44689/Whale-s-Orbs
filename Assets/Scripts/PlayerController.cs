@@ -71,6 +71,11 @@ public class PlayerController : MonoBehaviour
         PlayerAttack();
     }
 
+    void Update()
+    {
+        CheckExp();
+    }
+
     void PlayerMove()
     {
         // get player's input
@@ -194,6 +199,14 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.velocity = Vector3.zero;
             isAttacked = false;
+        }
+    }
+
+    void CheckExp()
+    {
+        if (exp < 0)
+        {
+            exp = 0;
         }
     }
 }
