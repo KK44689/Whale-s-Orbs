@@ -343,7 +343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &438771922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +371,7 @@ MonoBehaviour:
   bottomWall: {fileID: 388170892}
   maxOrbSpawnRate: 3
   shipsCount: 0
+  coralCount: 0
   maxShipSpawnRate: 2
   coralSpawn: 5
 --- !u!4 &438771923
@@ -1187,29 +1188,9 @@ PrefabInstance:
       propertyPath: expBar
       value: 
       objectReference: {fileID: 1489987665}
-    - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
-      propertyPath: collideForce
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595956473274266937, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 5595956473274266939, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595956473274266939, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595956473274266939, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595956473274266939, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5595956473274266939, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
       propertyPath: m_LocalPosition.x

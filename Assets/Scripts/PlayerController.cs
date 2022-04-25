@@ -155,31 +155,32 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // if (!isAttacked)
-            // {
-            Debug.Log("enemy");
-            exp--;
-            expBar.SetExp (exp);
-            enemyPrefab = GameObject.FindWithTag("Enemy");
-            Vector3 awayFromEnemy =
-                (transform.position - enemyPrefab.transform.position)
-                    .normalized;
-            playerRb.AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
-            // }
-            // else if (isAttacked && maxExp >= 30)
-            // {
-            //     Destroy(other.gameObject);
-            //     Debug.Log("player attack ship");
-            // }
+            if (!isAttacked)
+            {
+                Debug.Log("enemy");
+                exp--;
+                expBar.SetExp (exp);
+                enemyPrefab = GameObject.FindWithTag("Enemy");
+                Vector3 awayFromEnemy =
+                    (transform.position - enemyPrefab.transform.position)
+                        .normalized;
+                playerRb
+                    .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
+            }
+            else if (isAttacked && maxExp >= 35)
+            {
+                Destroy(other.gameObject);
+                Debug.Log("player attack ship");
+            }
         }
-        // if (other.gameObject.CompareTag("Coral"))
-        // {
-        //     if (maxExp >= 20 && isAttacked)
-        //     {
-        //         Destroy(other.gameObject);
-        //         Debug.Log("player attack coral");
-        //     }
-        // }
+        if (other.gameObject.CompareTag("Coral"))
+        {
+            if (isAttacked && maxExp >= 20)
+            {
+                Destroy(other.gameObject);
+                Debug.Log("player attack coral");
+            }
+        }
     }
 
     void PlayerAttack()
@@ -188,12 +189,10 @@ public class PlayerController : MonoBehaviour
         {
             isAttacked = true;
             playerRb.AddForce(facingDirection * 3 * speed, ForceMode.Impulse);
-            Debug.Log("player attack");
         }
         else if (isAttacked && Input.GetKeyUp(KeyCode.Space))
         {
             playerRb.velocity = Vector3.zero;
-            Debug.Log("space release");
             isAttacked = false;
         }
     }

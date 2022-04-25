@@ -26,7 +26,6 @@ public class SpawnManager : MonoBehaviour
 
     // orbs spawn times
     // public float orbSpawnRate = 3f;
-
     public int maxOrbSpawnRate = 3;
 
     // orbs count
@@ -34,6 +33,9 @@ public class SpawnManager : MonoBehaviour
 
     // ships count
     public int shipsCount = 0;
+
+    // coral count
+    public int coralCount = 0;
 
     //ships spawn rate
     public int maxShipSpawnRate = 1;
@@ -66,6 +68,13 @@ public class SpawnManager : MonoBehaviour
         {
             int shipSpawn = Random.Range(1, maxShipSpawnRate);
             SpawnShips (shipSpawn);
+        }
+
+        //spawn corals
+        coralCount = GameObject.FindGameObjectsWithTag("Coral").Length;
+        if (coralCount == 0)
+        {
+            SpawnCoral (coralSpawn);
         }
     }
 
