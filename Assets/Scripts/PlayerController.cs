@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     //player attack
     private bool isAttacked;
 
+    private ChangeDifficulty changeDifficultyScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,16 +58,16 @@ public class PlayerController : MonoBehaviour
         expBar.SetMaxExp (maxExp);
         exp = 0;
         isAttacked = false;
+
+        // get ChangeDifficulty script
+        changeDifficultyScript =
+            GameObject.Find("Plane").GetComponent<ChangeDifficulty>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         PlayerMove();
-    }
-
-    void Update()
-    {
         PlayerAttack();
     }
 
@@ -80,8 +82,7 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput > 0)
         {
             transform.rotation = rightDirection;
-            facingDirection =
-                Vector3.down * Time.deltaTime * speed * horizontalInput;
+            facingDirection = Vector3.right;
 
             // // player move
             transform
@@ -94,8 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             // direction = new Vector3(-1, 0, 0);
             transform.rotation = leftDirection;
-            facingDirection =
-                Vector3.up * Time.deltaTime * speed * horizontalInput;
+            facingDirection = Vector3.left;
 
             // // player move
             transform
@@ -108,8 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             // direction = new Vector3(0, 1, 0);
             transform.rotation = forwardDirection;
-            facingDirection =
-                Vector3.down * Time.deltaTime * speed * verticalInput;
+            facingDirection = Vector3.forward;
 
             // // player move
             transform
@@ -122,8 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             // direction = new Vector3(0, -1, -0);
             transform.rotation = backDirection;
-            facingDirection =
-                Vector3.up * Time.deltaTime * speed * verticalInput;
+            facingDirection = Vector3.back;
 
             // // player move
             transform
@@ -157,45 +155,45 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (maxExp >= 30 && !isAttacked)
-            {
-                Debug.Log("enemy");
-                exp--;
-                expBar.SetExp (exp);
-                enemyPrefab = GameObject.FindWithTag("Enemy");
-                Vector3 awayFromEnemy =
-                    (transform.position - enemyPrefab.transform.position)
-                        .normalized;
-                playerRb
-                    .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-                Debug.Log("player attack ship");
-            }
+            // if (!isAttacked)
+            // {
+            Debug.Log("enemy");
+            exp--;
+            expBar.SetExp (exp);
+            enemyPrefab = GameObject.FindWithTag("Enemy");
+            Vector3 awayFromEnemy =
+                (transform.position - enemyPrefab.transform.position)
+                    .normalized;
+            playerRb.AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
+            // }
+            // else if (isAttacked && maxExp >= 30)
+            // {
+            //     Destroy(other.gameObject);
+            //     Debug.Log("player attack ship");
+            // }
         }
-        if (other.gameObject.CompareTag("Coral"))
-        {
-            if (maxExp >= 20 && isAttacked)
-            {
-                Destroy(other.gameObject);
-                Debug.Log("player attack coral");
-            }
-        }
+        // if (other.gameObject.CompareTag("Coral"))
+        // {
+        //     if (maxExp >= 20 && isAttacked)
+        //     {
+        //         Destroy(other.gameObject);
+        //         Debug.Log("player attack coral");
+        //     }
+        // }
     }
 
     void PlayerAttack()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // speed *= 2;
-            playerRb.AddForce(facingDirection, ForceMode.Impulse);
             isAttacked = true;
+            playerRb.AddForce(facingDirection * 3 * speed, ForceMode.Impulse);
+            Debug.Log("player attack");
         }
-        else
+        else if (isAttacked && Input.GetKeyUp(KeyCode.Space))
         {
-            // speed /= 2;
+            playerRb.velocity = Vector3.zero;
+            Debug.Log("space release");
             isAttacked = false;
         }
     }
