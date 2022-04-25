@@ -77,7 +77,10 @@ public class ChangeDifficulty : MonoBehaviour
 
     void SetPlayerScale()
     {
-        player.transform.localScale += scaleChange;
+        if (!Mathf.Approximately(player.transform.localScale.x, 2f))
+        {
+            player.transform.localScale += scaleChange;
+        }
     }
 
     void SetPlayerSpeed()
@@ -101,7 +104,6 @@ public class ChangeDifficulty : MonoBehaviour
 
     void AddCoral()
     {
-        // spawnManagerscript.coralSpawn++;
         spawnManagerscript.SpawnCoral(1);
     }
 

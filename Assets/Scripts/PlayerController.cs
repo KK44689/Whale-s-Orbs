@@ -15,9 +15,10 @@ public class PlayerController : MonoBehaviour
 
     float verticalInput;
 
-    Vector3 direction;
+    // private Vector3 direction;
+    private Vector3 facingDirection;
 
-    // create your directions
+    // player directions
     private static Quaternion forwardDirection = Quaternion.Euler(-90, 0, 0);
 
     private static Quaternion rightDirection = Quaternion.Euler(-90, 90, 0);
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     public ExpBar expBar;
 
+    //player attack
+    private bool isAttacked;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +55,18 @@ public class PlayerController : MonoBehaviour
         // set start exp
         expBar.SetMaxExp (maxExp);
         exp = 0;
+        isAttacked = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         PlayerMove();
+    }
+
+    void Update()
+    {
+        PlayerAttack();
     }
 
     void PlayerMove()
@@ -70,6 +80,8 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput > 0)
         {
             transform.rotation = rightDirection;
+            facingDirection =
+                Vector3.down * Time.deltaTime * speed * horizontalInput;
 
             // // player move
             transform
@@ -82,6 +94,8 @@ public class PlayerController : MonoBehaviour
         {
             // direction = new Vector3(-1, 0, 0);
             transform.rotation = leftDirection;
+            facingDirection =
+                Vector3.up * Time.deltaTime * speed * horizontalInput;
 
             // // player move
             transform
@@ -94,6 +108,8 @@ public class PlayerController : MonoBehaviour
         {
             // direction = new Vector3(0, 1, 0);
             transform.rotation = forwardDirection;
+            facingDirection =
+                Vector3.down * Time.deltaTime * speed * verticalInput;
 
             // // player move
             transform
@@ -106,6 +122,8 @@ public class PlayerController : MonoBehaviour
         {
             // direction = new Vector3(0, -1, -0);
             transform.rotation = backDirection;
+            facingDirection =
+                Vector3.up * Time.deltaTime * speed * verticalInput;
 
             // // player move
             transform
@@ -139,24 +157,46 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // enemyCollided = true;
-            Debug.Log("enemy");
-            exp--;
-            expBar.SetExp (exp);
-            enemyPrefab = GameObject.FindWithTag("Enemy");
-            Vector3 awayFromEnemy =
-                (transform.position - enemyPrefab.transform.position)
-                    .normalized;
-            playerRb.AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
-            // enemyCollided = false;
+            if (maxExp >= 30 && !isAttacked)
+            {
+                Debug.Log("enemy");
+                exp--;
+                expBar.SetExp (exp);
+                enemyPrefab = GameObject.FindWithTag("Enemy");
+                Vector3 awayFromEnemy =
+                    (transform.position - enemyPrefab.transform.position)
+                        .normalized;
+                playerRb
+                    .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
+            }
+            else
+            {
+                Destroy(other.gameObject);
+                Debug.Log("player attack ship");
+            }
+        }
+        if (other.gameObject.CompareTag("Coral"))
+        {
+            if (maxExp >= 20 && isAttacked)
+            {
+                Destroy(other.gameObject);
+                Debug.Log("player attack coral");
+            }
         }
     }
 
-    // private void OnCollisionExit(Collision other)
-    // {
-    //     if (other.gameObject.CompareTag("Enemy"))
-    //     {
-    //         enemyCollided = false;
-    //     }
-    // }
+    void PlayerAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // speed *= 2;
+            playerRb.AddForce(facingDirection, ForceMode.Impulse);
+            isAttacked = true;
+        }
+        else
+        {
+            // speed /= 2;
+            isAttacked = false;
+        }
+    }
 }

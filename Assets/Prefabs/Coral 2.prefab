@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8149322796309795989}
   m_Layer: 6
   m_Name: Coral 2
-  m_TagString: Untagged
+  m_TagString: Coral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
