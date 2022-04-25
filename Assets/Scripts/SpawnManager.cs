@@ -43,38 +43,46 @@ public class SpawnManager : MonoBehaviour
     // coral spawn
     public int coralSpawn = 5;
 
+    // player script
+    private PlayerController playerScript;
+
     // Start is called before the first frame update
     void Start()
     {
         SpawnCoral (coralSpawn);
+        playerScript =
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // spawn fishes
-        orbCount = FindObjectsOfType<Orb>().Length;
-        if (orbCount == 0)
+        if (playerScript.isGameActive)
         {
-            int orbsSpawn = Random.Range(0, maxOrbSpawnRate + 1);
+            // spawn fishes
+            orbCount = FindObjectsOfType<Orb>().Length;
+            if (orbCount == 0)
+            {
+                int orbsSpawn = Random.Range(0, maxOrbSpawnRate + 1);
 
-            // int fishSpawn = Mathf.CeilToInt(Random.Range(0, maxOrbSpawnRate));
-            SpawnOrbs (orbsSpawn);
-        }
+                // int fishSpawn = Mathf.CeilToInt(Random.Range(0, maxOrbSpawnRate));
+                SpawnOrbs (orbsSpawn);
+            }
 
-        //spawn ships
-        shipsCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        if (shipsCount == 0)
-        {
-            int shipSpawn = Random.Range(1, maxShipSpawnRate);
-            SpawnShips (shipSpawn);
-        }
+            //spawn ships
+            shipsCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            if (shipsCount == 0)
+            {
+                int shipSpawn = Random.Range(1, maxShipSpawnRate);
+                SpawnShips (shipSpawn);
+            }
 
-        //spawn corals
-        coralCount = GameObject.FindGameObjectsWithTag("Coral").Length;
-        if (coralCount == 0)
-        {
-            SpawnCoral (coralSpawn);
+            //spawn corals
+            coralCount = GameObject.FindGameObjectsWithTag("Coral").Length;
+            if (coralCount == 0)
+            {
+                SpawnCoral (coralSpawn);
+            }
         }
     }
 

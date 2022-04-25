@@ -44,7 +44,8 @@ public class ChangeDifficulty : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerScript.exp == playerScript.maxExp)
+        if (playerScript.exp == playerScript.maxExp && playerScript.isGameActive
+        )
         {
             // set new max exp
             SetNewMaxExp();

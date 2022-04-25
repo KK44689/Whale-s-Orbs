@@ -18,10 +18,15 @@ public class Orb : MonoBehaviour
     // speed
     private float speed = 0.5f;
 
+    // player script
+    private PlayerController playerScript;
+
     // Start is called before the first frame update
     void Start()
     {
         RandomMove();
+        playerScript =
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
     void RandomMove()
@@ -39,8 +44,11 @@ public class Orb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move fish back & forth
-        float time = Mathf.PingPong(Time.time * speed, 1);
-        transform.position = Vector3.Lerp(startPoint, endPoint, time);
+        // move orbs back & forth
+        if (playerScript.isGameActive)
+        {
+            float time = Mathf.PingPong(Time.time * speed, 1);
+            transform.position = Vector3.Lerp(startPoint, endPoint, time);
+        }
     }
 }

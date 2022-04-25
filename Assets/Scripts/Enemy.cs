@@ -10,18 +10,29 @@ public class Enemy : MonoBehaviour
 
     public float speed = 10f;
 
+    // player script
+    private PlayerController playerScript;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         enemyRb = GetComponent<Rigidbody>();
+        playerScript = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 lookDirection =
-            (player.transform.position - transform.position).normalized;
-        enemyRb.AddForce(lookDirection * speed);
+        if (playerScript.isGameActive)
+        {
+            Vector3 lookDirection =
+                (player.transform.position - transform.position).normalized;
+            enemyRb.AddForce(lookDirection * speed);
+        }
+        else
+        {
+            enemyRb.velocity = Vector3.zero;
+        }
     }
 }

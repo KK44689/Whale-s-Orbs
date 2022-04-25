@@ -1290,6 +1290,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
+      propertyPath: hp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 98016108}

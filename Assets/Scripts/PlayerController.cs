@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
 
     private float boundaryZ = 12;
 
+    // gameover
+    public bool isGameActive;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,19 +76,29 @@ public class PlayerController : MonoBehaviour
         // set start hp
         hpBar.SetMaxHp (maxHp);
         hp = 5;
+
+        // set gameactive bool
+        isGameActive = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        PlayerMove();
-        PlayerAttack();
+        if (isGameActive)
+        {
+            PlayerMove();
+            PlayerAttack();
+        }
     }
 
     void Update()
     {
-        CheckExp();
-        PlayerBoundary();
+        CheckGameOver();
+        if (isGameActive)
+        {
+            CheckExp();
+            PlayerBoundary();
+        }
     }
 
     void PlayerBoundary()
@@ -253,6 +266,14 @@ public class PlayerController : MonoBehaviour
         if (exp < 0)
         {
             exp = 0;
+        }
+    }
+
+    void CheckGameOver()
+    {
+        if (hp == 0)
+        {
+            isGameActive = false;
         }
     }
 }
