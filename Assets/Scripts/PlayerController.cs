@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject GameOverScreen;
 
+    // animation
+    public Animator playerAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -261,11 +264,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isAttacked = true;
+            playerAnim.SetTrigger("Attack");
             playerRb.AddForce(facingDirection * 3 * speed, ForceMode.Impulse);
         }
         else if (isAttacked && Input.GetKeyUp(KeyCode.Space))
         {
             playerRb.velocity = Vector3.zero;
+            playerAnim.SetTrigger("Swim1");
             isAttacked = false;
         }
     }
@@ -283,6 +288,7 @@ public class PlayerController : MonoBehaviour
         if (hp == 0)
         {
             isGameActive = false;
+            playerAnim.SetBool("Dead", true);
         }
     }
 }
