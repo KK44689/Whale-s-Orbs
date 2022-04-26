@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     public int hp;
 
-    public Animator fullHelthAlertText;
+    // public Animator fullHelthAlertText;
 
     public HpBar hpBar;
 
@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        fullHelthAlertText.SetTrigger("Idle");
+        // fullHelthAlertText.SetTrigger("Idle");
 
         if (other.gameObject.CompareTag("Orb"))
         {
@@ -230,17 +230,17 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("RedOrb"))
         {
+            Destroy(other.gameObject);
             if (hp < maxHp)
             {
-                Destroy(other.gameObject);
                 hp++;
                 hpBar.SetHp (hp);
             } // player already have full health
-            else
-            {
-                Destroy(other.gameObject);
-                fullHelthAlertText.SetTrigger("fullHealth");
-            }
+            // else
+            // {
+            //     Destroy(other.gameObject);
+            //     fullHelthAlertText.SetTrigger("fullHealth");
+            // }
         }
     }
 
