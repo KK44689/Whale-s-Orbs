@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // fish prefabs
+    // orbs prefabs
     public GameObject orbPrefab;
+
+    // red orb prefabs
+    public GameObject redOrbPrefab;
 
     // ship prefabs
     public GameObject[] shipPrefab;
@@ -31,6 +34,13 @@ public class SpawnManager : MonoBehaviour
     // orbs count
     private int orbCount = 0;
 
+    // red orbs spawn rate
+    private float redOrbSpawnRate;
+
+    private float minRedOrbSpawnRate = 5;
+
+    private float maxRedOrbSpawnRate = 10;
+
     // ships count
     public int shipsCount = 0;
 
@@ -52,6 +62,7 @@ public class SpawnManager : MonoBehaviour
         SpawnCoral (coralSpawn);
         playerScript =
             GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        StartCoroutine(SpawnRedOrbs());
     }
 
     // Update is called once per frame
@@ -59,7 +70,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (playerScript.isGameActive)
         {
-            // spawn fishes
+            // spawn orbs
             orbCount = FindObjectsOfType<Orb>().Length;
             if (orbCount == 0)
             {
@@ -93,6 +104,19 @@ public class SpawnManager : MonoBehaviour
             Instantiate(orbPrefab,
             GenerateSpawnPos(0),
             orbPrefab.transform.rotation);
+        }
+    }
+
+    IEnumerator SpawnRedOrbs()
+    {
+        while (playerScript.isGameActive)
+        {
+            redOrbSpawnRate =
+                Random.Range(minRedOrbSpawnRate, maxRedOrbSpawnRate);
+            yield return new WaitForSeconds(redOrbSpawnRate);
+            Instantiate(redOrbPrefab,
+            GenerateSpawnPos(0),
+            redOrbPrefab.transform.rotation);
         }
     }
 

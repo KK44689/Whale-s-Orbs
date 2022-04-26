@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public int maxHp = 5;
 
     public int hp;
+
+    public Animator fullHelthAlertText;
 
     public HpBar hpBar;
 
@@ -217,11 +220,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        fullHelthAlertText.SetTrigger("Idle");
+
         if (other.gameObject.CompareTag("Orb"))
         {
             Destroy(other.gameObject);
             exp++;
             expBar.SetExp (exp);
+        }
+        if (other.gameObject.CompareTag("RedOrb"))
+        {
+            if (hp < maxHp)
+            {
+                Destroy(other.gameObject);
+                hp++;
+                hpBar.SetHp (hp);
+            } // player already have full health
+            else
+            {
+                fullHelthAlertText.SetTrigger("fullHealth");
+            }
         }
     }
 
@@ -269,9 +287,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (isAttacked && Input.GetKeyUp(KeyCode.Space))
         {
+            isAttacked = false;
             playerRb.velocity = Vector3.zero;
             playerAnim.SetTrigger("Swim1");
-            isAttacked = false;
         }
     }
 

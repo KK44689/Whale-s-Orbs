@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2862722324955145668}
   - component: {fileID: 2862722324955145669}
   - component: {fileID: 8879443027200584910}
+  - component: {fileID: 2485134978047834909}
   m_Layer: 0
   m_Name: RedOrbs
-  m_TagString: Orb
+  m_TagString: RedOrb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2862722324955145674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 755e08edf0426e142a5d960cb94f3058, type: 3}
   m_Name: 
@@ -128,6 +129,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2485134978047834909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862722324955145674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea73f0fe2b829c4ebb825f2e8a4676c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveRange: 5
 --- !u!1001 &4904747003600133368
 PrefabInstance:
   m_ObjectHideFlags: 0
