@@ -71,7 +71,7 @@ public class SpawnManager : MonoBehaviour
         if (playerScript.isGameActive)
         {
             // spawn orbs
-            orbCount = FindObjectsOfType<Orb>().Length;
+            orbCount = GameObject.FindGameObjectsWithTag("Orb").Length;
             if (orbCount == 0)
             {
                 int orbsSpawn = Random.Range(0, maxOrbSpawnRate + 1);
