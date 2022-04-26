@@ -37,6 +37,9 @@ public class SpawnManager : MonoBehaviour
     // red orbs spawn rate
     private float redOrbSpawnRate;
 
+    // red orbs count
+    private int redOrbCount = 0;
+
     private float minRedOrbSpawnRate = 10;
 
     private float maxRedOrbSpawnRate = 20;
@@ -62,6 +65,7 @@ public class SpawnManager : MonoBehaviour
         SpawnCoral (coralSpawn);
         playerScript =
             GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        // start spawn red orbs
         StartCoroutine(SpawnRedOrbs());
     }
 
@@ -84,8 +88,8 @@ public class SpawnManager : MonoBehaviour
             shipsCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
             if (shipsCount == 0)
             {
-                int shipSpawn = Random.Range(1, maxShipSpawnRate);
-                SpawnShips (shipSpawn);
+                // int shipSpawn = maxShipSpawnRate;
+                SpawnShips (maxShipSpawnRate);
             }
 
             //spawn corals

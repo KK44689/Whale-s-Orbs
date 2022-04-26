@@ -129,9 +129,6 @@ public class ChangeDifficulty : MonoBehaviour
         {
             spawnManagerscript.maxShipSpawnRate++;
             spawnManagerscript.SpawnShips(1);
-
-            // Debug.Log("ship count : " + spawnManagerscript.shipsCount);
-            // Debug.Log("max spawn ship : " + spawnManagerscript.maxShipSpawnRate);
         }
     }
 

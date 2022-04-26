@@ -238,6 +238,7 @@ public class PlayerController : MonoBehaviour
             } // player already have full health
             else
             {
+                Destroy(other.gameObject);
                 fullHelthAlertText.SetTrigger("fullHealth");
             }
         }
