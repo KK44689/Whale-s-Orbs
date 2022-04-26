@@ -125,7 +125,7 @@ public class ChangeDifficulty : MonoBehaviour
 
     void AddMoreShip()
     {
-        if (playerScript.maxExp >= 20 && (playerScript.maxExp % 2) == 0)
+        if ((playerScript.maxExp % 2) == 0)
         {
             spawnManagerscript.maxShipSpawnRate++;
             spawnManagerscript.SpawnShips(1);

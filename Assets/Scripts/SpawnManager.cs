@@ -65,6 +65,7 @@ public class SpawnManager : MonoBehaviour
         SpawnCoral (coralSpawn);
         playerScript =
             GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
         // start spawn red orbs
         StartCoroutine(SpawnRedOrbs());
     }
@@ -126,13 +127,13 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnShips(int shipsSpawn)
     {
-        for (int i = 0; i < shipsSpawn; i++)
-        {
-            int index = Random.Range(0, maxShipIndex + 1);
-            Instantiate(shipPrefab[index],
-            GenerateSpawnPos(4),
-            shipPrefab[index].transform.rotation);
-        }
+        // for (int i = 0; i < shipsSpawn; i++)
+        // {
+        int index = Random.Range(0, maxShipIndex + 1);
+        Instantiate(shipPrefab[index],
+        GenerateSpawnPos(4),
+        shipPrefab[index].transform.rotation);
+        // }
     }
 
     public void SpawnCoral(int coralSpawn)
