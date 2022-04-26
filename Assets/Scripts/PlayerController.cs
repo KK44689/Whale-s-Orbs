@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetTrigger("Attack");
             playerRb.AddForce(facingDirection * 3 * speed, ForceMode.Impulse);
         }
-        else if (isAttacked && Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             isAttacked = false;
             playerRb.velocity = Vector3.zero;
