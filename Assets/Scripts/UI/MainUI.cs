@@ -11,6 +11,22 @@ public class MainUI : MonoBehaviour
 
     public GameObject PauseButton;
 
+    private PlayerController playerScript;
+
+    void Start()
+    {
+        playerScript =
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
+
+    void Update()
+    {
+        if (!playerScript.isGameActive)
+        {
+            PauseButton.SetActive(false);
+        }
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
