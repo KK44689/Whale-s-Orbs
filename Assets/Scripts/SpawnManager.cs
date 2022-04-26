@@ -40,9 +40,9 @@ public class SpawnManager : MonoBehaviour
     // red orbs count
     private int redOrbCount = 0;
 
-    private float minRedOrbSpawnRate = 10;
+    private float minRedOrbSpawnRate = 15;
 
-    private float maxRedOrbSpawnRate = 20;
+    private float maxRedOrbSpawnRate = 30;
 
     // ships count
     public int shipsCount = 0;

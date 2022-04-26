@@ -120,7 +120,11 @@ public class ChangeDifficulty : MonoBehaviour
 
     void AddCoral()
     {
-        spawnManagerscript.SpawnCoral(1);
+        if ((playerScript.maxExp % 2) == 0)
+        {
+            spawnManagerscript.coralSpawn++;
+            spawnManagerscript.SpawnCoral(1);
+        }
     }
 
     void AddMoreShip()
