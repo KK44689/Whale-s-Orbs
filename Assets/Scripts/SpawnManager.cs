@@ -13,7 +13,27 @@ public class SpawnManager : MonoBehaviour
     // ship prefabs
     public GameObject[] shipPrefab;
 
-    public int maxShipIndex = 0;
+    private int m_maxShipIndex = 0;
+
+    public int maxShipIndex
+    {
+        get
+        {
+            return m_maxShipIndex;
+        }
+        set
+        {
+            if (value > 2)
+            {
+                Debug
+                    .LogError("ship's index is up to 2 (have three ship types)");
+            }
+            else
+            {
+                m_maxShipIndex = value;
+            }
+        }
+    }
 
     // coral prefabs
     public GameObject[] coralPrefab;
@@ -28,8 +48,26 @@ public class SpawnManager : MonoBehaviour
     public GameObject bottomWall;
 
     // orbs spawn times
-    // public float orbSpawnRate = 3f;
-    public int maxOrbSpawnRate = 3;
+    private int m_maxOrbSpawnRate = 3;
+
+    public int maxOrbSpawnRate
+    {
+        get
+        {
+            return m_maxOrbSpawnRate;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("max Orb spawn rate can't be negative!");
+            }
+            else
+            {
+                m_maxOrbSpawnRate = value;
+            }
+        }
+    }
 
     // orbs count
     private int orbCount = 0;
@@ -45,16 +83,56 @@ public class SpawnManager : MonoBehaviour
     private float maxRedOrbSpawnRate = 30;
 
     // ships count
-    public int shipsCount = 0;
+    [SerializeField]
+    private int shipsCount = 0;
 
     // coral count
-    public int coralCount = 0;
+    [SerializeField]
+    private int coralCount = 0;
 
     //ships spawn rate
-    public int maxShipSpawnRate = 1;
+    private int m_maxShipSpawnRate = 1;
+
+    public int maxShipSpawnRate
+    {
+        get
+        {
+            return m_maxShipSpawnRate;
+        }
+        set
+        {
+            if (value < 1)
+            {
+                Debug.LogError("ships number can't lower than one!");
+            }
+            else
+            {
+                m_maxShipSpawnRate = value;
+            }
+        }
+    }
 
     // coral spawn
-    public int coralSpawn = 5;
+    private int m_coralSpawn = 5;
+
+    public int coralSpawn
+    {
+        get
+        {
+            return m_coralSpawn;
+        }
+        set
+        {
+            if (value < 5)
+            {
+                Debug.LogError("corals number can't lower than five!");
+            }
+            else
+            {
+                m_coralSpawn = value;
+            }
+        }
+    }
 
     // player script
     private PlayerController playerScript;
@@ -62,7 +140,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnCoral (coralSpawn);
+        SpawnCoral (m_coralSpawn);
         playerScript =
             GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
@@ -79,9 +157,9 @@ public class SpawnManager : MonoBehaviour
             orbCount = GameObject.FindGameObjectsWithTag("Orb").Length;
             if (orbCount == 0)
             {
-                int orbsSpawn = Random.Range(0, maxOrbSpawnRate + 1);
+                int orbsSpawn = Random.Range(0, m_maxOrbSpawnRate + 1);
 
-                // int fishSpawn = Mathf.CeilToInt(Random.Range(0, maxOrbSpawnRate));
+                // int fishSpawn = Mathf.CeilToInt(Random.Range(0, m_maxOrbSpawnRate));
                 SpawnOrbs (orbsSpawn);
             }
 
@@ -90,14 +168,14 @@ public class SpawnManager : MonoBehaviour
             if (shipsCount == 0)
             {
                 // int shipSpawn = maxShipSpawnRate;
-                SpawnShips (maxShipSpawnRate);
+                SpawnShips (m_maxShipSpawnRate);
             }
 
             //spawn corals
             coralCount = GameObject.FindGameObjectsWithTag("Coral").Length;
             if (coralCount == 0)
             {
-                SpawnCoral (coralSpawn);
+                SpawnCoral (m_coralSpawn);
             }
         }
     }
@@ -129,7 +207,7 @@ public class SpawnManager : MonoBehaviour
     {
         // for (int i = 0; i < shipsSpawn; i++)
         // {
-        int index = Random.Range(0, maxShipIndex + 1);
+        int index = Random.Range(0, m_maxShipIndex + 1);
         Instantiate(shipPrefab[index],
         GenerateSpawnPos(4),
         shipPrefab[index].transform.rotation);
