@@ -6,15 +6,34 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // declare player's speed
-    public float speed = 10f;
+    private float m_speed = 10f;
+
+    public float speed
+    {
+        get
+        {
+            return m_speed;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("You can't set negative player's speed !");
+            }
+            else
+            {
+                m_speed = value;
+            }
+        }
+    }
 
     // rigidbody variables
     Rigidbody playerRb;
 
     // player's input variables
-    float horizontalInput;
+    private float horizontalInput;
 
-    float verticalInput;
+    private float verticalInput;
 
     // private Vector3 direction;
     private Vector3 facingDirection;
@@ -38,16 +57,92 @@ public class PlayerController : MonoBehaviour
     private bool enemyCollided = false;
 
     // player exp
-    public int maxExp = 5;
+    private int m_maxExp = 5;
 
-    public int exp;
+    public int maxExp
+    {
+        get
+        {
+            return m_maxExp;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("You can't set negative player's max EXP !");
+            }
+            else
+            {
+                m_maxExp = value;
+            }
+        }
+    }
+
+    private int m_exp;
+
+    public int exp
+    {
+        get
+        {
+            return m_exp;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("You can't set negative player's EXP !");
+            }
+            else
+            {
+                m_exp = value;
+            }
+        }
+    }
 
     public ExpBar expBar;
 
     // player hp
-    public int maxHp = 5;
+    private int m_maxHp = 5;
 
-    public int hp;
+    public int maxHp
+    {
+        get
+        {
+            return m_maxHp;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("You can't set negative player's max HP !");
+            }
+            else
+            {
+                m_maxHp = value;
+            }
+        }
+    }
+
+    private int m_hp = 5;
+
+    public int hp
+    {
+        get
+        {
+            return m_hp;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("You can't set negative player's HP !");
+            }
+            else
+            {
+                m_hp = value;
+            }
+        }
+    }
 
     // public Animator fullHelthAlertText;
     public HpBar hpBar;
@@ -61,7 +156,7 @@ public class PlayerController : MonoBehaviour
     private float boundaryZ = 12;
 
     // gameover
-    public bool isGameActive;
+    public bool isGameActive { get; private set; }
 
     public GameObject GameOverScreen;
 
@@ -75,14 +170,14 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
 
         // set start exp
-        expBar.SetMaxExp (maxExp);
-        exp = 0;
+        expBar.SetMaxExp (m_maxExp);
+        m_exp = 0;
 
         isAttacked = false;
 
         // set start hp
-        hpBar.SetMaxHp (maxHp);
-        hp = 5;
+        hpBar.SetMaxHp (m_maxHp);
+        m_hp = 5;
 
         // set gameactive bool
         isGameActive = true;
@@ -164,7 +259,7 @@ public class PlayerController : MonoBehaviour
             transform
                 .Translate(Vector3.down *
                 Time.deltaTime *
-                speed *
+                m_speed *
                 horizontalInput);
         }
         else if (horizontalInput < 0)
@@ -177,7 +272,7 @@ public class PlayerController : MonoBehaviour
             transform
                 .Translate(Vector3.up *
                 Time.deltaTime *
-                speed *
+                m_speed *
                 horizontalInput);
         } // set direction forward/backward
         else if (verticalInput > 0)
@@ -190,7 +285,7 @@ public class PlayerController : MonoBehaviour
             transform
                 .Translate(Vector3.down *
                 Time.deltaTime *
-                speed *
+                m_speed *
                 verticalInput);
         }
         else if (verticalInput < 0)
@@ -201,7 +296,10 @@ public class PlayerController : MonoBehaviour
 
             // // player move
             transform
-                .Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
+                .Translate(Vector3.up *
+                Time.deltaTime *
+                m_speed *
+                verticalInput);
         }
 
         // check collide with enemy
@@ -223,14 +321,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Orb"))
         {
             Destroy(other.gameObject);
-            exp++;
-            expBar.SetExp (exp);
+            m_exp++;
+            expBar.SetExp (m_exp);
         }
         if (other.gameObject.CompareTag("RedOrb"))
         {
             Destroy(other.gameObject);
-            exp += 2;
-            expBar.SetExp (exp);
+            m_exp += 2;
+            expBar.SetExp (m_exp);
             // player already have full health
             // else
             // {
@@ -247,10 +345,10 @@ public class PlayerController : MonoBehaviour
             if (!isAttacked)
             {
                 Debug.Log("enemy");
-                exp--;
-                expBar.SetExp (exp);
-                hp--;
-                hpBar.SetHp (hp);
+                m_exp--;
+                expBar.SetExp (m_exp);
+                m_hp--;
+                hpBar.SetHp (m_hp);
                 enemyPrefab = GameObject.FindWithTag("Enemy");
                 Vector3 awayFromEnemy =
                     (transform.position - enemyPrefab.transform.position)
@@ -258,7 +356,7 @@ public class PlayerController : MonoBehaviour
                 playerRb
                     .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
             }
-            else if (isAttacked && maxExp >= 35)
+            else if (isAttacked && m_maxExp >= 35)
             {
                 Destroy(other.gameObject);
                 Debug.Log("player attack ship");
@@ -266,7 +364,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Coral"))
         {
-            if (isAttacked && maxExp >= 20)
+            if (isAttacked && m_maxExp >= 20)
             {
                 Destroy(other.gameObject);
                 Debug.Log("player attack coral");
@@ -280,7 +378,7 @@ public class PlayerController : MonoBehaviour
         {
             isAttacked = true;
             playerAnim.SetTrigger("Attack");
-            playerRb.AddForce(facingDirection * 3 * speed, ForceMode.Impulse);
+            playerRb.AddForce(facingDirection * 3 * m_speed, ForceMode.Impulse);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -292,15 +390,15 @@ public class PlayerController : MonoBehaviour
 
     void CheckExp()
     {
-        if (exp < 0)
+        if (m_exp < 0)
         {
-            exp = 0;
+            m_exp = 0;
         }
     }
 
     void CheckGameOver()
     {
-        if (hp == 0)
+        if (m_hp == 0)
         {
             isGameActive = false;
             playerAnim.SetBool("Dead", true);

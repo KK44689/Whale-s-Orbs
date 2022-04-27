@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody enemyRb;
 
-    public float speed = 10f;
+    [SerializeField]
+    private float speed = 10f;
 
     // player script
     private PlayerController playerScript;

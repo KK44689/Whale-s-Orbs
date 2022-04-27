@@ -5,7 +5,8 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     // movement points
-    public float moveRange = 5;
+    [SerializeField]
+    private float moveRange = 5;
 
     private Vector3 endPoint;
 
