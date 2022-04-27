@@ -211,6 +211,7 @@ public class SpawnManager : MonoBehaviour
         Instantiate(shipPrefab[index],
         GenerateSpawnPos(4),
         shipPrefab[index].transform.rotation);
+        maxShipSpawnRate++;
         // }
     }
 
