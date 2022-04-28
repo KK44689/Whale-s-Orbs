@@ -9,7 +9,7 @@ public class Cutscenes : MonoBehaviour
 
     private int frameIndex = -1;
 
-    private int pageIndex = 0;
+    protected int pageIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class Cutscenes : MonoBehaviour
     void ActiveNextFrame()
     {
         frameIndex++;
-        if (frameIndex >= Pages[pageIndex].transform.childCount)
+        if (frameIndex >= Pages[pageIndex]?.transform.childCount)
         {
             ActiveNextPage();
         }
