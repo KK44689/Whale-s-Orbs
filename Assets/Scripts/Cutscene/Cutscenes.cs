@@ -9,7 +9,7 @@ public class Cutscenes : MonoBehaviour
 
     private int frameIndex = -1;
 
-    protected int pageIndex = 0;
+    private int pageIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +50,12 @@ public class Cutscenes : MonoBehaviour
     void ActiveNextPage()
     {
         pageIndex++;
-        Pages[pageIndex].SetActive(true);
-        frameIndex = -1;
-        Pages[pageIndex - 1].SetActive(false);
+        if (pageIndex <= Pages.Length)
+        {
+            Pages[pageIndex].SetActive(true);
+            frameIndex = -1;
+            Pages[pageIndex - 1].SetActive(false);
+        }
     }
 
     public virtual void EndCutscene()
