@@ -53,7 +53,7 @@ public class Cutscenes : MonoBehaviour
     void ActiveNextPage()
     {
         pageIndex++;
-        if (pageIndex <= Pages.Length)
+        if (pageIndex < Pages.Length)
         {
             Pages[pageIndex].SetActive(true);
             frameIndex = -1;
