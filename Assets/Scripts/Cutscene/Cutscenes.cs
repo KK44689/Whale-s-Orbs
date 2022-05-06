@@ -11,6 +11,8 @@ public class Cutscenes : MonoBehaviour
 
     private int pageIndex = 0;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
