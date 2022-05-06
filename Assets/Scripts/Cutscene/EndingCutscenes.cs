@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class EndingCutscenes : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayableDirector director;
+
+    void OnEnable()
     {
-        
+        director.stopped += OnPlayableDirectorStopped;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnPlayableDirectorStopped(PlayableDirector aDirector)
     {
-        
+        if (director == aDirector)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    void OnDisable()
+    {
+        director.stopped -= OnPlayableDirectorStopped;
     }
 }
