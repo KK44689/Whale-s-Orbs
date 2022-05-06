@@ -11,7 +11,8 @@ public class Cutscenes : MonoBehaviour
 
     private int pageIndex = 0;
 
-    Animator anim;
+    [SerializeField]
+    private int indexWarpScene;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,6 @@ public class Cutscenes : MonoBehaviour
 
     public virtual void EndCutscene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene (indexWarpScene);
     }
 }

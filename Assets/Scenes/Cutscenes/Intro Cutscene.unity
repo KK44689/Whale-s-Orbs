@@ -219,6 +219,7 @@ MonoBehaviour:
   - {fileID: 1928468759}
   - {fileID: 1757148979}
   - {fileID: 688625176}
+  indexWarpScene: 1
 --- !u!1 &178409095
 GameObject:
   m_ObjectHideFlags: 0
