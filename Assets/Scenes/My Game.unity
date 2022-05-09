@@ -3638,9 +3638,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
+      propertyPath: shipAttackSoundFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
+    - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
       propertyPath: fullHelthAlertText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
+      propertyPath: coralDestroySoundFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 78b7aab0dde591541aaee602e385619f, type: 3}
+    - target: {fileID: 5595956473274266936, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
+      propertyPath: shipDestroyedSoundFX
+      value: 
+      objectReference: {fileID: 8300000, guid: beea98ab95da57541a9b1583a325a125, type: 3}
     - target: {fileID: 5595956473274266939, guid: c53f93ff35f2b4a478a24b2d92f835f8, type: 3}
       propertyPath: m_RootOrder
       value: 5

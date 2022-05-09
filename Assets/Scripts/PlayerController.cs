@@ -170,6 +170,12 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip redOrbsSoundFX;
 
+    public AudioClip shipAttackSoundFX;
+
+    public AudioClip shipDestroyedSoundFX;
+
+    public AudioClip coralDestroySoundFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -202,12 +208,13 @@ public class PlayerController : MonoBehaviour
         if (isGameActive)
         {
             PlayerMove();
-            PlayerAttack();
+            // PlayerAttack();
         }
     }
 
     void Update()
     {
+        PlayerAttack();
         CheckGameOver();
         if (isGameActive)
         {
@@ -356,7 +363,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isAttacked)
             {
-                Debug.Log("enemy");
+                playerAudio.PlayOneShot (shipAttackSoundFX);
                 m_exp--;
                 expBar.SetExp (m_exp);
                 m_hp--;
@@ -370,6 +377,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (isAttacked && m_maxExp >= 35)
             {
+                playerAudio.PlayOneShot (shipDestroyedSoundFX);
                 Destroy(other.gameObject);
                 Debug.Log("player attack ship");
             }
@@ -378,6 +386,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isAttacked && m_maxExp >= 20)
             {
+                playerAudio.PlayOneShot (coralDestroySoundFX);
                 Destroy(other.gameObject);
                 Debug.Log("player attack coral");
             }
