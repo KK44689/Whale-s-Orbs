@@ -167,8 +167,10 @@ public class SpawnManager : MonoBehaviour
             shipsCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
             if (shipsCount == 0)
             {
-                // int shipSpawn = maxShipSpawnRate;
-                SpawnShips (m_maxShipSpawnRate);
+                for (int i = 0; i < maxShipSpawnRate; i++)
+                {
+                    SpawnShips(1);
+                }
             }
 
             //spawn corals
@@ -211,7 +213,7 @@ public class SpawnManager : MonoBehaviour
         Instantiate(shipPrefab[index],
         GenerateSpawnPos(4),
         shipPrefab[index].transform.rotation);
-        maxShipSpawnRate++;
+        // maxShipSpawnRate++;
         // }
     }
 
