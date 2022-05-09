@@ -26,21 +26,21 @@ public class CheckCutsceneCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerScript.maxExp == 10 && !cutscence1_Played)
+        if (playerScript.maxExp == 20 && !cutscence1_Played)
         {
             cutsceneIndex = 0;
             Cutscenes[cutsceneIndex].SetActive(true);
             Time.timeScale = 0f;
             cutscence1_Played = true;
         }
-        if (playerScript.maxExp == 15 && !cutscence2_Played)
+        if (playerScript.maxExp == 35 && !cutscence2_Played)
         {
             cutsceneIndex = 1;
             Cutscenes[cutsceneIndex].SetActive(true);
             Time.timeScale = 0f;
             cutscence2_Played = true;
         }
-        if (playerScript.maxExp == 20 && !cutscence3_Played)
+        if (playerScript.maxExp == 50 && !cutscence3_Played)
         {
             cutsceneIndex = 2;
             Cutscenes[cutsceneIndex].SetActive(true);

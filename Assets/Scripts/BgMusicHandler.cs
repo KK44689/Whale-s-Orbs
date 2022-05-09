@@ -50,7 +50,7 @@ public class BgMusicHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerScript.maxExp == 10)
+        if (playerScript.maxExp == 20)
         {
             if (isAlreadyPlay2 == false)
             {
@@ -59,7 +59,7 @@ public class BgMusicHandler : MonoBehaviour
                 isAlreadyPlay2 = true;
             }
         }
-        if (playerScript.maxExp == 15)
+        if (playerScript.maxExp == 35)
         {
             if (isAlreadyPlay3 == false)
             {
@@ -68,7 +68,7 @@ public class BgMusicHandler : MonoBehaviour
                 isAlreadyPlay3 = true;
             }
         }
-        if (playerScript.maxExp == 20)
+        if (playerScript.maxExp == 50)
         {
             if (isAlreadyPlay4 == false)
             {
