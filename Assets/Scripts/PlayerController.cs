@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private GameObject enemyPrefab;
 
     // enemy force
-    public float collideForce = 2f;
+    public float collideForce = 5f;
 
     // check collide with enemy
     private bool enemyCollided = false;
@@ -368,12 +368,12 @@ public class PlayerController : MonoBehaviour
                 expBar.SetExp (m_exp);
                 m_hp--;
                 hpBar.SetHp (m_hp);
-                enemyPrefab = GameObject.FindWithTag("Enemy");
-                Vector3 awayFromEnemy =
-                    (transform.position - enemyPrefab.transform.position)
-                        .normalized;
-                playerRb
-                    .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
+                // enemyPrefab = GameObject.FindWithTag("Enemy");
+                // Vector3 awayFromEnemy =
+                //     (enemyPrefab.transform.position - transform.position)
+                //         .normalized;
+                // playerRb
+                //     .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
             }
             else if (isAttacked && m_maxExp >= 35)
             {
