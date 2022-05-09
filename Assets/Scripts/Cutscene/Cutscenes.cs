@@ -64,5 +64,6 @@ public class Cutscenes : MonoBehaviour
     public virtual void EndCutscene()
     {
         SceneManager.LoadScene (indexWarpScene);
+        Time.timeScale = 1f;
     }
 }

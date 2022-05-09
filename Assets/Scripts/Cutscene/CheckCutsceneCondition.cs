@@ -30,18 +30,21 @@ public class CheckCutsceneCondition : MonoBehaviour
         {
             cutsceneIndex = 0;
             Cutscenes[cutsceneIndex].SetActive(true);
+            Time.timeScale = 0f;
             cutscence1_Played = true;
         }
         if (playerScript.maxExp == 15 && !cutscence2_Played)
         {
             cutsceneIndex = 1;
             Cutscenes[cutsceneIndex].SetActive(true);
+            Time.timeScale = 0f;
             cutscence2_Played = true;
         }
         if (playerScript.maxExp == 20 && !cutscence3_Played)
         {
             cutsceneIndex = 2;
             Cutscenes[cutsceneIndex].SetActive(true);
+            Time.timeScale = 0f;
             cutscence3_Played = true;
         }
     }
