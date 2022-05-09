@@ -163,6 +163,13 @@ public class PlayerController : MonoBehaviour
     // animation
     public Animator playerAnim;
 
+    // sound
+    private AudioSource playerAudio;
+
+    public AudioClip orbsSoundFX;
+
+    public AudioClip redOrbsSoundFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -184,6 +191,9 @@ public class PlayerController : MonoBehaviour
 
         // gameover
         GameOverScreen.SetActive(false);
+
+        // get audiosource
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -320,12 +330,14 @@ public class PlayerController : MonoBehaviour
         // fullHelthAlertText.SetTrigger("Idle");
         if (other.gameObject.CompareTag("Orb"))
         {
+            playerAudio.PlayOneShot (orbsSoundFX);
             Destroy(other.gameObject);
             m_exp++;
             expBar.SetExp (m_exp);
         }
         if (other.gameObject.CompareTag("RedOrb"))
         {
+            playerAudio.PlayOneShot (redOrbsSoundFX);
             Destroy(other.gameObject);
             m_exp += 2;
             expBar.SetExp (m_exp);
