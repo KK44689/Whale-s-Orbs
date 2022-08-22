@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Cutscenes : MonoBehaviour
@@ -23,7 +24,7 @@ public class Cutscenes : MonoBehaviour
     void Update()
     {
         // all frames must be inactive before play
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             ActiveNextFrame();
         }
