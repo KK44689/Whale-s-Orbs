@@ -385,10 +385,10 @@ RectTransform:
   m_Father: {fileID: 960131465}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -152.87674, y: -120.27706}
-  m_SizeDelta: {x: 68.1016, y: 68.1016}
+  m_AnchorMin: {x: 0.27125, y: 0.16000001}
+  m_AnchorMax: {x: 0.35375, y: 0.3}
+  m_AnchoredPosition: {x: -152.87674, y: -85}
+  m_SizeDelta: {x: 68.10158, y: 68.1016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94403747
 MonoBehaviour:
@@ -734,6 +734,8 @@ MonoBehaviour:
   - {fileID: 335461738}
   - {fileID: 1056620332}
   indexWarpScene: 0
+  endMoveButton: {fileID: 0}
+  endDashButton: {fileID: 0}
   moveButton: {fileID: 960131464}
   dashButton: {fileID: 1037488697}
 --- !u!114 &147626225
@@ -754,6 +756,8 @@ MonoBehaviour:
   - {fileID: 335461738}
   - {fileID: 1056620332}
   indexWarpScene: 3
+  endMoveButton: {fileID: 960131464}
+  endDashButton: {fileID: 1037488697}
 --- !u!1 &163872315
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.046250004, y: 0.031111112}
   m_AnchorMax: {x: 0.52875, y: 0.48222223}
-  m_AnchoredPosition: {x: 0.925354, y: 2.5}
+  m_AnchoredPosition: {x: 0.92529297, y: 2.5}
   m_SizeDelta: {x: -0.88931274, y: 2.6100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &239647219
@@ -2885,7 +2889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027499998, y: 0.05777778}
   m_AnchorMax: {x: 0.97125006, y: 0.9422223}
-  m_AnchoredPosition: {x: 1.3190308, y: -1}
+  m_AnchoredPosition: {x: 1.3190918, y: -1}
   m_SizeDelta: {x: 4.4641724, y: 7.2843018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &791737633
@@ -2980,7 +2984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.48000002, y: 0.04666667}
   m_AnchorMax: {x: 0.91375, y: 0.44222224}
-  m_AnchoredPosition: {x: -1.5, y: 0.6297302}
+  m_AnchoredPosition: {x: -1.5, y: 0.62976074}
   m_SizeDelta: {x: -1.1712036, y: 2.6063995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &807726061
@@ -3339,7 +3343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &960131465
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,10 +3819,10 @@ RectTransform:
   m_Father: {fileID: 633755364}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -106, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.80625004, y: 0.11111112}
+  m_AnchorMax: {x: 0.92625004, y: 0.32888892}
+  m_AnchoredPosition: {x: 1, y: 1}
+  m_SizeDelta: {x: 4, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037488699
 MonoBehaviour:
@@ -3924,6 +3928,8 @@ MonoBehaviour:
   Pages:
   - {fileID: 277314385}
   indexWarpScene: 0
+  endMoveButton: {fileID: 0}
+  endDashButton: {fileID: 0}
   moveButton: {fileID: 960131464}
   dashButton: {fileID: 1037488697}
 --- !u!1 &1056620332
@@ -4242,10 +4248,10 @@ RectTransform:
   m_Father: {fileID: 960131465}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -244.70108, y: -159.94922}
-  m_SizeDelta: {x: 68.1016, y: 68.1016}
+  m_AnchorMin: {x: 0.15, y: 0.08444445}
+  m_AnchorMax: {x: 0.23375, y: 0.21333338}
+  m_AnchoredPosition: {x: -244.70103, y: -124.67214}
+  m_SizeDelta: {x: 68.101585, y: 68.101616}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1135661317
 MonoBehaviour:
@@ -4331,10 +4337,10 @@ RectTransform:
   m_Father: {fileID: 960131465}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -244.70108, y: -69.08057}
-  m_SizeDelta: {x: 68.1016, y: 68.1016}
+  m_AnchorMin: {x: 0.15, y: 0.2688889}
+  m_AnchorMax: {x: 0.23375, y: 0.42000002}
+  m_AnchoredPosition: {x: -244.70103, y: -33.80352}
+  m_SizeDelta: {x: 68.101585, y: 68.10161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1254185914
 MonoBehaviour:
@@ -5438,7 +5444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07750001, y: 0.04666667}
   m_AnchorMax: {x: 0.3975, y: 0.46}
-  m_AnchoredPosition: {x: 4.4699707, y: 4.613556}
+  m_AnchoredPosition: {x: 4.4699707, y: 4.6135254}
   m_SizeDelta: {x: -0.031295776, y: 10.563904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1546009787
@@ -5925,7 +5931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.025, y: 0.064444445}
   m_AnchorMax: {x: 0.49, y: 0.5333334}
-  m_AnchoredPosition: {x: 3.4960938, y: 0.8073425}
+  m_AnchoredPosition: {x: 3.4960938, y: 0.80737305}
   m_SizeDelta: {x: 0.7858887, y: 4.2832947}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1728321372
@@ -6113,9 +6119,9 @@ RectTransform:
   m_Father: {fileID: 960131465}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -332.13266, y: -120.27706}
+  m_AnchorMin: {x: 0.048750002, y: 0.16000001}
+  m_AnchorMax: {x: 0.12375001, y: 0.3}
+  m_AnchoredPosition: {x: -332.13263, y: -85.00002}
   m_SizeDelta: {x: 68.1016, y: 68.1016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1789393851
@@ -6244,7 +6250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5162501, y: 0.064444445}
   m_AnchorMax: {x: 0.9775001, y: 0.5333334}
-  m_AnchoredPosition: {x: -2.5, y: 0.8073425}
+  m_AnchoredPosition: {x: -2.5, y: 0.80737305}
   m_SizeDelta: {x: 3.7858887, y: 4.2832947}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796376497
@@ -6752,7 +6758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.690002, y: 0.16461182}
+  m_AnchoredPosition: {x: -10.689941, y: 0.16461182}
   m_SizeDelta: {x: 21.38, y: -0.32922}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1976425580
@@ -7022,6 +7028,8 @@ MonoBehaviour:
   - {fileID: 1794198666}
   - {fileID: 2086748594}
   indexWarpScene: 0
+  endMoveButton: {fileID: 0}
+  endDashButton: {fileID: 0}
   moveButton: {fileID: 960131464}
   dashButton: {fileID: 1037488697}
 --- !u!1 &2086748594

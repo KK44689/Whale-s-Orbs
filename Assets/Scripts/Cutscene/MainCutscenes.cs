@@ -14,7 +14,7 @@ public class MainCutscenes : Cutscenes
 
     private CheckCutsceneCondition checkConditionScript;
 
-    void Start()
+    protected override void Start()
     {
         StartCutscene();
         checkConditionScript =

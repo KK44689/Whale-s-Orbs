@@ -15,9 +15,20 @@ public class Cutscenes : MonoBehaviour
     [SerializeField]
     private int indexWarpScene;
 
+    [SerializeField]
+    private GameObject endMoveButton;
+
+    [SerializeField]
+    private GameObject endDashButton;
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
+        if (gameObject.name == "Cutscene 3")
+        {
+            endMoveButton.SetActive(false);
+            endDashButton.SetActive(false);
+        }
     }
 
     // Update is called once per frame
