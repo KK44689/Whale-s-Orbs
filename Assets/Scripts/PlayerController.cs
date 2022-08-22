@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -34,6 +35,14 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
 
     private float verticalInput;
+
+    private PlayerInput playerInput;
+
+    [SerializeField]
+    private GameObject MoveButton;
+
+    [SerializeField]
+    private GameObject DashButton;
 
     // private Vector3 direction;
     private Vector3 facingDirection;
@@ -182,6 +191,9 @@ public class PlayerController : MonoBehaviour
         // get player's rigidbody
         playerRb = GetComponent<Rigidbody>();
 
+        // get player input
+        playerInput = GetComponent<PlayerInput>();
+
         // set start exp
         expBar.SetMaxExp (m_maxExp);
         m_exp = 0;
@@ -200,6 +212,12 @@ public class PlayerController : MonoBehaviour
 
         // get audiosource
         playerAudio = GetComponent<AudioSource>();
+
+
+#if UNITY_ANDROID
+        MoveButton.SetActive(true);
+        DashButton.SetActive(true);
+#endif
     }
 
     // Update is called once per frame
@@ -261,6 +279,50 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
+#region Mobile Movement
+#if UNITY_ANDROID
+        if (Gamepad.current.dpad.down.isPressed)
+        {
+            Debug.Log("vertical down");
+            transform.rotation = backDirection;
+            facingDirection = Vector3.back;
+
+            // // player move
+            transform.Translate(Vector3.down * Time.deltaTime * m_speed);
+        }
+        if (Gamepad.current.dpad.up.isPressed)
+        {
+            Debug.Log("vertical up");
+            transform.rotation = forwardDirection;
+            facingDirection = Vector3.forward;
+
+            // // player move
+            transform.Translate(Vector3.down * Time.deltaTime * m_speed);
+        }
+        if (Gamepad.current.dpad.right.isPressed)
+        {
+            Debug.Log("vertical right");
+            transform.rotation = rightDirection;
+            facingDirection = Vector3.right;
+
+            // // player move
+            transform.Translate(Vector3.down * Time.deltaTime * m_speed);
+        }
+        if (Gamepad.current.dpad.left.isPressed)
+        {
+            Debug.Log("vertical down");
+            transform.rotation = leftDirection;
+            facingDirection = Vector3.left;
+
+            // // player move
+            transform.Translate(Vector3.down * Time.deltaTime * m_speed);
+        }
+#endif
+#endregion
+
+
+
+#region PC Movement
         // get player's input
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -294,6 +356,8 @@ public class PlayerController : MonoBehaviour
         } // set direction forward/backward
         else if (verticalInput > 0)
         {
+            Debug.Log("vertical up");
+
             // direction = new Vector3(0, 1, 0);
             transform.rotation = forwardDirection;
             facingDirection = Vector3.forward;
@@ -307,6 +371,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (verticalInput < 0)
         {
+            Debug.Log("vertical down");
+
             // direction = new Vector3(0, -1, -0);
             transform.rotation = backDirection;
             facingDirection = Vector3.back;
@@ -319,22 +385,12 @@ public class PlayerController : MonoBehaviour
                 verticalInput);
         }
 
-        // check collide with enemy
-        // if (enemyCollided)
-        // {
-        //     Debug.Log("enemy");
-        //     enemyPrefab = GameObject.FindWithTag("Enemy");
-        //     Vector3 awayFromEnemy =
-        //         (transform.position - enemyPrefab.transform.position)
-        //             .normalized;
-        //     playerRb.AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
-        //     enemyCollided = false;
-        // }
+
+#endregion
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // fullHelthAlertText.SetTrigger("Idle");
         if (other.gameObject.CompareTag("Orb"))
         {
             playerAudio.PlayOneShot (orbsSoundFX);
@@ -348,12 +404,6 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             m_exp += 2;
             expBar.SetExp (m_exp);
-            // player already have full health
-            // else
-            // {
-            //     Destroy(other.gameObject);
-            //     fullHelthAlertText.SetTrigger("fullHealth");
-            // }
         }
     }
 
@@ -368,12 +418,6 @@ public class PlayerController : MonoBehaviour
                 expBar.SetExp (m_exp);
                 m_hp--;
                 hpBar.SetHp (m_hp);
-                // enemyPrefab = GameObject.FindWithTag("Enemy");
-                // Vector3 awayFromEnemy =
-                //     (enemyPrefab.transform.position - transform.position)
-                //         .normalized;
-                // playerRb
-                //     .AddForce(awayFromEnemy * collideForce, ForceMode.Impulse);
             }
             else if (isAttacked && m_maxExp >= 35)
             {
@@ -395,13 +439,23 @@ public class PlayerController : MonoBehaviour
 
     void PlayerAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        bool attackButton = Input.GetKeyDown(KeyCode.Space);
+        bool attackRealeaseButton = Input.GetKeyUp(KeyCode.Space);
+
+
+#if UNITY_ANDROID
+        attackButton = Gamepad.current.buttonEast.wasPressedThisFrame;
+        attackRealeaseButton = Gamepad.current.buttonEast.wasReleasedThisFrame;
+#endif
+
+
+        if (attackButton)
         {
             isAttacked = true;
             playerAnim.SetTrigger("Attack");
             playerRb.AddForce(facingDirection * 3 * m_speed, ForceMode.Impulse);
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (attackRealeaseButton)
         {
             isAttacked = false;
             playerRb.velocity = Vector3.zero;
