@@ -6,6 +6,12 @@ public class MainCutscenes : Cutscenes
 {
     private int mainPageIndex = 0;
 
+    [SerializeField]
+    private GameObject moveButton;
+
+    [SerializeField]
+    private GameObject dashButton;
+
     private CheckCutsceneCondition checkConditionScript;
 
     void Start()
@@ -19,6 +25,8 @@ public class MainCutscenes : Cutscenes
     {
         Pages[mainPageIndex].SetActive(true);
         Time.timeScale = 0f;
+        moveButton.SetActive(false);
+        dashButton.SetActive(false);
     }
 
     public override void EndCutscene()
@@ -26,6 +34,8 @@ public class MainCutscenes : Cutscenes
         checkConditionScript
             .Cutscenes[checkConditionScript.cutsceneIndex]
             .SetActive(false);
+        moveButton.SetActive(true);
+        dashButton.SetActive(true);
         Time.timeScale = 1f;
     }
 }
